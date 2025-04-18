@@ -2,24 +2,26 @@ package com.appdata.demo.controllers;
 
 import com.appdata.demo.entities.Book;
 import com.appdata.demo.repositories.BookRepository;
+
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
+@Controller
 @RequestMapping("/books")
 public class BookController {
 
-    private final BookRepository bookRepository;
+    private final BookRepository repository;
 
-    public BookController(BookRepository bookRepository) {
-        this.bookRepository = bookRepository;
+    public BookController(BookRepository repository) {
+        this.repository = repository;
     }
 
     @PostMapping("/addBook")
     public Object createBook(@RequestBody Book book) {
         try {
-            return bookRepository.save(book);
+            return repository.save(book);
 
         }catch (NullPointerException e) {
             return e.getMessage();
@@ -29,7 +31,7 @@ public class BookController {
     @GetMapping("/getAllBooks")
     public List<Book> getAllBooks() {
         try{
-            return (List<Book>) bookRepository.findAll();
+            return (List<Book>) repository.findAll();
         }
         catch (NullPointerException e) {
             return null;
@@ -40,16 +42,17 @@ public class BookController {
     @GetMapping("/getBookById/{id}")
     public Book getBookById(@PathVariable Long id) {
         try{
-            return bookRepository.findById(id).get();
+            return repository.findById(id).get();
         }
         catch (NullPointerException e) {
             return null;
         }
     }
 
+    /*
     @PutMapping("/updateBook/{id}")
     public Book updateBook(@PathVariable Long id, @RequestBody Book updateBook) {
-        return bookRepository.findById(id)
+        return repository.findById(id)
                 .map(book -> {
                     book.setAuthor(updateBook.getAuthor());
                     book.setTitle(updateBook.getTitle());
@@ -62,11 +65,12 @@ public class BookController {
                     }
                 );
     }
+                */
 
     @DeleteMapping("/deleteBook/{id}")
     public String deleteBook(@PathVariable Long id) {
         try {
-            bookRepository.deleteById(id);
+            repository.deleteById(id);
         }
         catch(NullPointerException e) {
             return "Delete Book Failed";
@@ -77,7 +81,7 @@ public class BookController {
     @DeleteMapping("/deleteAllBooks")
     public String deleteAllBooks() {
         try {
-            bookRepository.deleteAll();
+            repository.deleteAll();
         }
         catch(NullPointerException e) {
             return "Delete All Books Failed";

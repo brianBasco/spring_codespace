@@ -1,5 +1,5 @@
 -- Drop the table if it exists (useful for development purposes)
-DROP TABLE IF EXISTS books;
+DROP TABLE IF EXISTS BOOKS;
 
 -- Create the books table
 CREATE TABLE BOOKS (

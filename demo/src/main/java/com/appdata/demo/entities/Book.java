@@ -3,7 +3,7 @@ package com.appdata.demo.entities;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
 
-@Table("BOOKS")
+@Table("books")
 public class Book {
     @Id
     private Long id;
