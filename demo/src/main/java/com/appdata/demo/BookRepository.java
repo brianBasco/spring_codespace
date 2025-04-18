@@ -1,9 +1,7 @@
-package com.appdata.demo.repositories;
+package com.appdata.demo;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
-
-import com.appdata.demo.entities.Book;
 
 @Repository
 public interface BookRepository extends CrudRepository<Book, Long>{

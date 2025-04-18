@@ -1,4 +1,4 @@
-package com.appdata.demo.entities;
+package com.appdata.demo;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
@@ -9,6 +9,10 @@ public class Book {
     private Long id;
     private String title;
     private String author;
+
+    public Book() {
+
+    }
 
     public Book(Long id, String title, String author) {
         this.id = id;

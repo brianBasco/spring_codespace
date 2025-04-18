@@ -1,7 +1,4 @@
-package com.appdata.demo.controllers;
-
-import com.appdata.demo.entities.Book;
-import com.appdata.demo.repositories.BookRepository;
+package com.appdata.demo;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -18,7 +15,13 @@ public class BookController {
         this.repository = repository;
     }
 
-    @PostMapping("/addBook")
+    @GetMapping("/")
+    public String app() {
+        return "Hello world";
+    }
+
+    /*
+     * @PostMapping("/addBook")
     public Object createBook(@RequestBody Book book) {
         try {
             return repository.save(book);
@@ -27,6 +30,8 @@ public class BookController {
             return e.getMessage();
         }
     }
+     
+    
 
     @GetMapping("/getAllBooks")
     public List<Book> getAllBooks() {
@@ -49,6 +54,9 @@ public class BookController {
         }
     }
 
+    * 
+     */
+
     /*
     @PutMapping("/updateBook/{id}")
     public Book updateBook(@PathVariable Long id, @RequestBody Book updateBook) {
@@ -67,25 +75,5 @@ public class BookController {
     }
                 */
 
-    @DeleteMapping("/deleteBook/{id}")
-    public String deleteBook(@PathVariable Long id) {
-        try {
-            repository.deleteById(id);
-        }
-        catch(NullPointerException e) {
-            return "Delete Book Failed";
-        }
-        return "Deleted Book Successfully";
-    }
-
-    @DeleteMapping("/deleteAllBooks")
-    public String deleteAllBooks() {
-        try {
-            repository.deleteAll();
-        }
-        catch(NullPointerException e) {
-            return "Delete All Books Failed";
-        }
-        return "Deleted All Books Successfully";
-    }
+    
 }
